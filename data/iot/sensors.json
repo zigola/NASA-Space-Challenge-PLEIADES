@@ -1,0 +1,4 @@
+[
+  {"id": "RIF-A", "latitude": 35.20, "longitude": -5.10, "coverage_km": 12.0, "status": "available"},
+  {"id": "RIF-B", "latitude": 35.75, "longitude": -5.65, "coverage_km": 8.0, "status": "offline"}
+]

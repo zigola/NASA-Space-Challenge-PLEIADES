@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "name": "NASA_FIRMS_Sample_GeoJSON",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "latitude": 35.24,
+        "longitude": -5.35,
+        "brightness": 344.2,
+        "scan": 0.4,
+        "track": 0.4,
+        "acq_date": "2024-08-21",
+        "acq_time": "1310",
+        "satellite": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "confidence": 94,
+        "version": "2.0NRT",
+        "frp": 82.5,
+        "daynight": "D"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-5.35, 35.24]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "latitude": 35.28,
+        "longitude": -5.31,
+        "brightness": 328.0,
+        "scan": 1.0,
+        "track": 1.0,
+        "acq_date": "2024-08-21",
+        "acq_time": "1125",
+        "satellite": "Terra",
+        "instrument": "MODIS",
+        "confidence": 78,
+        "version": "6.1NRT",
+        "frp": 36.4,
+        "daynight": "D"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-5.31, 35.28]
+      }
+    }
+  ]
+}

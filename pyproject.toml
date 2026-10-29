@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pleiades"
+version = "0.1.0"
+description = "PLEIADES wildfire monitoring and risk assessment platform"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.2.0",
+  "numpy>=1.26.0",
+  "scipy>=1.11.0",
+  "scikit-learn>=1.4.0",
+  "streamlit>=1.35.0",
+  "plotly>=5.0.0",
+  "folium>=0.16.0",
+  "streamlit-folium>=0.2.0",
+  "requests>=2.31.0",
+  "pytest>=8.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

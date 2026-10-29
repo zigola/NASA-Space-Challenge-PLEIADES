@@ -1,0 +1,1 @@
+"""NASA FIRMS ingestion helpers."""
