@@ -1,162 +1,92 @@
-# PLEIADES — Intelligent Wildfire Monitoring and Early Warning
+# PLEIADES
 
-**NASA Space Apps Challenge 2026 | Béni Mellal, Morocco**
+## Wildfire monitoring with satellite and environmental data
 
-PLEIADES is a modular wildfire monitoring and risk-assessment platform designed to improve wildfire awareness by combining satellite observations, environmental sensor data, data processing, and risk analysis.
+PLEIADES is an experimental, open-development wildfire-awareness platform created for the NASA Space Apps Challenge 2026 in Béni Mellal, Morocco. It explores how satellite observations, simulated sensor data, geospatial processing, and transparent risk analysis can support earlier wildfire awareness.
 
-The project explores the integration of NASA FIRMS fire observations from MODIS and VIIRS with simulated or real ground-based sensor measurements. It also provides a foundation for data visualization, experimental machine-learning risk scoring, and early-warning workflows.
+> PLEIADES is a research and demonstration project. It is not a certified detection, forecasting, or emergency-response system.
 
-## The Problem
+## What the repository currently contains
 
-Wildfires threaten forests, biodiversity, communities, and infrastructure. Early awareness and reliable communication can be challenging in remote areas or locations with limited internet connectivity.
+The repository currently includes Python modules and tests for:
 
-PLEIADES explores an integrated approach to wildfire monitoring that combines satellite observations, environmental measurements, and accessible monitoring tools.
+- Local ingestion of NASA FIRMS-compatible CSV data
+- MODIS and VIIRS observation handling and harmonization experiments
+- Geographic filtering, distance calculations, and spatial utilities
+- Synthetic IoT sensor generation and replay workflows
+- Experimental risk assessment and machine-learning components
+- Streamlit dashboard views, charts, maps, and filters
+- Sample GeoJSON data and documented configuration
+- Automated tests covering ingestion, geospatial logic, harmonization, simulation, replay, and risk modules
 
-## Our Mission
+The presence of a module does not imply operational validation. Check the source code, tests, and documentation before relying on a capability.
 
-The project aims to:
+## Architecture
 
-- Process satellite hotspot observations from MODIS and VIIRS.
-- Combine available observations into a consistent data structure.
-- Explore environmental monitoring using temperature, humidity, smoke, flame, and other suitable sensors.
-- Assess potential fire-related risks using transparent data-processing methods.
-- Explore communication options for areas with limited connectivity.
-- Present relevant observations through a monitoring dashboard.
-- Support informed decisions without replacing official emergency services.
+```text
+app.py                 Streamlit entry point
+config/                Regions, thresholds, settings, and translations
+dashboard/             Dashboard views, maps, charts, and UI helpers
+data/                  Samples and synthetic sensor data
+docs/                  Installation, architecture, methodology, and data dictionary
+scripts/               Ingestion, harmonization, simulation, training, and pipeline runners
+src/                   Core processing, models, NASA FIRMS clients, spatial, and risk logic
+tests/                 Automated tests
+```
 
-## Main Capabilities
+## Data sources and limitations
 
-The software architecture is designed to support:
+PLEIADES is designed to work with NASA FIRMS observations from MODIS and VIIRS. These products differ in resolution, timing, detection characteristics, confidence fields, and availability. Satellite observations may be delayed, incomplete, or affected by cloud cover and other conditions.
 
-- Local ingestion of NASA FIRMS CSV files.
-- Geographic filtering of wildfire observations.
-- A normalized wildfire observation schema.
-- Spatiotemporal clustering of nearby detections.
-- Synthetic IoT and LoRa-like sensor simulation.
-- Experimental Random Forest risk scoring when suitable data are available.
-- A Streamlit dashboard and replay interface.
-- Automated processing pipelines and automated tests.
-
-The availability of each capability depends on its implementation and validation status.
-
-## How It Works
-
-### 1. Satellite Monitoring
-
-PLEIADES uses data from NASA's Fire Information for Resource Management System (FIRMS) to explore satellite-derived fire and thermal anomaly observations.
-
-MODIS and VIIRS provide complementary observations. Their spatial resolution, detection characteristics, observation times, and data availability must be considered when comparing or combining their results.
-
-### 2. Environmental Sensing
-
-The proposed hardware architecture may include sensors for:
-
-- Temperature.
-- Humidity.
-- Smoke.
-- Flame.
-- Selected gases, depending on sensor availability.
-
-Sensor measurements can be simulated during software development and replaced with real measurements when compatible hardware becomes available.
-
-### 3. Data Integration and Analysis
-
-The software processes available observations, validates relevant fields, applies geographic filters, and explores relationships between satellite detections and environmental measurements.
-
-Potential analysis variables include latitude, longitude, observation time, satellite instrument, confidence, brightness, and fire radiative power when provided by the selected data product.
-
-### 4. Risk Assessment
-
-The project explores experimental risk-scoring methods, including machine learning where suitable training data are available.
-
-Synthetic data are intended for development and demonstration. They do not establish real-world predictive accuracy.
-
-### 5. Monitoring and Alerts
-
-The proposed system may integrate a dashboard with communication options such as Wi-Fi, cellular networks, or LoRa-based local communication.
-
-Possible notification channels depend on the hardware, network coverage, and services actually implemented and tested.
-
-## Free and Open-Source Policy
-
-PLEIADES is designed to use free, open-source, and locally executable tools wherever practical.
-
-- Python is the primary programming language.
-- Core ingestion and analysis run locally.
-- NASA FIRMS access is optional and configured through a local environment variable.
-- The basic workflow does not require a paid cloud service or paid API.
-- Compatible CSV files and synthetic datasets can be used without a live internet connection.
-- Optional online services must comply with their respective terms and usage limits.
-
-## Technologies and Data Sources
-
-- **Python:** Data processing and application logic.
-- **Streamlit:** Interactive monitoring dashboard.
-- **Pandas:** Data manipulation and analysis.
-- **Scikit-learn:** Experimental machine-learning workflows.
-- **NASA FIRMS:** Satellite-derived fire and thermal anomaly observations.
-- **MODIS and VIIRS:** Complementary satellite observation sources.
-- **IoT sensors:** Potential ground-based environmental measurements.
-- **LoRa, Wi-Fi, and cellular networks:** Communication technologies under consideration.
-- **Pytest:** Automated software testing.
-
-The final technology stack depends on implementation, testing, and hardware availability.
-
-## Project Architecture
-
-The current software architecture is organized around the following components:
-
-- `app.py` — Streamlit application entry point.
-- `config/` — Configuration, regions, and thresholds.
-- `src/` — Data processing, harmonization, simulation, machine learning, and risk logic.
-- `dashboard/` — Dashboard components.
-- `data/` — Raw, processed, and synthetic datasets.
-- `models/` — Model files and metadata.
-- `scripts/` — Processing pipeline and stage runners.
-- `tests/` — Automated tests.
-- `docs/` — Installation, methodology, and demonstration documentation.
-
-Actual files and available features may vary as development progresses.
+Synthetic sensor data are useful for development and demonstrations. They are not evidence of real-world sensor accuracy. Any operational use would require independent validation, field testing, reliable communications, and coordination with the relevant authorities.
 
 ## Installation
 
-Create and activate a virtual environment:
+Python 3.10 or newer is recommended.
 
-```powershell
+```bash
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+
+# Linux/macOS
+source .venv/bin/activate
+
+# Windows PowerShell
+.venv\\Scripts\\Activate.ps1
+
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-If PowerShell blocks environment activation, use the Python executable inside the virtual environment directly or follow the relevant Windows environment configuration guidance.
+## Run the dashboard
 
-## Run the Dashboard
-
-```powershell
+```bash
 streamlit run app.py
 ```
 
-## Optional NASA FIRMS Configuration
+## Optional NASA FIRMS configuration
 
-Obtain an appropriate NASA FIRMS map key through the official service if your intended data product and workflow require it.
+Copy `.env.example` to `.env` and set a valid key only when your selected FIRMS workflow requires one. Never commit `.env`, API keys, or other credentials.
 
-Set the key in the current PowerShell session:
-
-```powershell
-$env:NASA_FIRMS_MAP_KEY = "your_real_key_here"
-streamlit run app.py
+```text
+NASA_FIRMS_API_KEY=your_key_here
+NASA_FIRMS_BASE_URL=https://firms.modaps.eosdis.nasa.gov/api
+DEFAULT_REGION=Morocco-Rif
+LOG_LEVEL=INFO
 ```
 
-Never commit API keys, passwords, or other credentials to Git. Keep local secrets outside version control.
+Official source: [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/)
 
-Official data source: https://firms.modaps.eosdis.nasa.gov/
+## Run tests
 
-## Run Pipeline Stages
+```bash
+pytest -q
+```
 
-If the corresponding scripts are present in the project:
+## Run selected pipeline stages
 
-```powershell
+Use only the stages supported by the current implementation and local data:
+
+```bash
 python scripts/run_ingestion.py
 python scripts/run_harmonization.py
 python scripts/simulate_iot.py
@@ -164,53 +94,41 @@ python scripts/train_model.py
 python scripts/run_pipeline.py
 ```
 
-Run only the stages supported by the current codebase.
+## Development status
 
-## Run Tests
+### Implemented or represented in the current repository
 
-```powershell
-pytest -q
-```
+- Local data ingestion and validation modules
+- Satellite observation schemas and harmonization code
+- Spatial utilities and dashboard components
+- Synthetic IoT data and replay support
+- Test suite and sample data
 
-## Development Roadmap
+### Planned or requiring further validation
 
-- [ ] Validate the project structure and installation workflow.
-- [ ] Implement and test local FIRMS CSV ingestion.
-- [ ] Validate the normalized observation schema.
-- [ ] Develop and evaluate MODIS–VIIRS harmonization.
-- [ ] Implement geographic filtering and spatiotemporal clustering.
-- [ ] Develop the sensor simulation workflow.
-- [ ] Evaluate machine-learning methods using appropriate data.
-- [ ] Improve the monitoring dashboard.
-- [ ] Prototype hardware and communication components.
-- [ ] Test alert delivery and offline communication where supported.
-- [ ] Document system limitations and validation results.
+- Independent evaluation of risk-scoring methods
+- Production-quality alert delivery and offline communication
+- Hardware integration and field measurements
+- Performance evaluation with representative datasets
+- Deployment hardening and operational monitoring
 
-Progress should be updated as features are implemented and tested.
+## Responsible use and security
 
-## Security and Reliability
+- Do not use PLEIADES as the sole basis for emergency decisions.
+- Treat risk scores as experimental outputs, not confirmed incidents.
+- Validate input data and model assumptions.
+- Keep secrets outside version control.
+- Review third-party data terms and usage limits.
+- Report security issues privately using the process in [SECURITY.md](SECURITY.md).
 
-- Do not commit API keys or other secrets.
-- Keep local environment files excluded from version control.
-- Validate input files before processing.
-- Treat synthetic data as demonstration data, not evidence of operational accuracy.
-- Account for the latency, resolution, and limitations of satellite observations.
-- Test any operational alerting workflow before relying on it.
+## Contributing
 
-## Limitations and Disclaimer
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request. Small improvements to tests, documentation, reproducibility, and data validation are especially welcome.
 
-PLEIADES is a developing research and demonstration project. It is not a certified wildfire detection or forecasting system.
+## License and project ownership
 
-Satellite observations can be delayed or incomplete, and environmental sensors can produce inaccurate readings. Experimental risk scores must not be interpreted as confirmed fire incidents.
+This repository currently does not declare an open-source license. Do not assume that the code, documentation, data, or team materials may be reused or redistributed until the project owners confirm the licensing terms. A license should be added after ownership and contributor permissions are confirmed.
 
-Operational deployment would require extensive testing, independent validation, reliable communications, and coordination with the relevant authorities.
+## Acknowledgements
 
-## Team and Contributions
-
-PLEIADES is being developed for the NASA Space Apps Challenge 2026 in Béni Mellal, Morocco.
-
-Technical feedback, contributions, and ideas are welcome. Open an issue to discuss a proposed improvement before submitting substantial changes.
-
----
-
-**PLEIADES — Connecting satellite intelligence and environmental sensing for wildfire awareness.**
+PLEIADES explores NASA FIRMS data and open-source Python tools. NASA is a data-source reference here, not an endorsement or affiliation with this project.
