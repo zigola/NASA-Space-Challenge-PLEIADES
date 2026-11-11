@@ -1,0 +1,10 @@
+# Third-party notices
+
+This repository may contain or reference third-party software, datasets, documentation, prompts, images, fonts, trademarks, or other materials.
+
+The repository license does not relicense third-party material. Each external component remains subject to its own license, terms of service, attribution requirements, and usage restrictions. Public availability alone does not grant permission to copy, modify, or redistribute.
+
+A complete file-by-file third-party inventory has not been independently verified. Before redistribution, review dependency manifests, asset sources, dataset terms, and upstream notices, then record exact names, versions, sources, and required attributions here.
+
+
+NASA-specific note: NASA datasets, APIs, names, logos, and other NASA materials are not automatically covered by this repository license. Check applicable NASA data and media terms, preserve source attribution, and do not imply NASA endorsement. This project is not an official NASA product.
