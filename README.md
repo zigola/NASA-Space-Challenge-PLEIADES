@@ -1,3 +1,5 @@
+<p align="center"><img src="project-banner.svg" alt="PLEIADES wildfire awareness platform banner" width="100%" /></p>
+
 # PLEIADES
 
 ## Wildfire monitoring with satellite and environmental data
